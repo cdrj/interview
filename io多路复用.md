@@ -6,13 +6,13 @@
 
 每 accept 一个客户端连接后，将这个文件描述符（connfd）放到一个数组里。
 
-```
+```c++
 fdlist.add(connfd);
 ```
 
 然后弄一个新的线程去不断遍历这个数组，调用每一个元素的非阻塞 read 方法。
 
-```
+```c++
 while(1) {
   for(fd <-- fdlist) {
     if(read(fd) != -1) {
